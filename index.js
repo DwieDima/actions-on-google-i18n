@@ -94,15 +94,15 @@ class I18n {
           }
           else if (typeof translation === "object") {
 
-            // if the utterance value is a {text, ssml} object
-            if (translation.text || translation.ssml) {
+            // if the utterance value is a {text, speech} object
+            if (translation.text || translation.speech) {
               translation = {
                 text: this.applyContext(translation.text, context),
-                ssml: this.applyContext(translation.ssml, context),
+                speech: this.applyContext(translation.speech, context),
               }
             }
             else {
-              throw new Error("Error: only 'text' and 'ssml' values are allowed.");
+              throw new Error("Error: only 'text' and 'speech' values are allowed.");
             }
 
           }
