@@ -70,7 +70,7 @@ class I18n {
         );
       }
 
-      const locales = flattenObject(require(file));
+      const locales = this.flattenObject(require(file));
 
       return (key, context = {}) => {
         let translation = locales[key];
