@@ -81,7 +81,7 @@ class I18n {
 
         if (!translation) {
           // wring key provided
-          throw new Error(`Error: "${key}" was not found in locales [${ Object.keys(locales) }}].`);
+          throw new Error(`Error: "${key}" was not found in locales [${ Object.keys(locales) }}]. This is the locales file: ${locales}`);
         }
 
         if (Array.isArray(translation)) {
