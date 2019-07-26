@@ -69,12 +69,8 @@ class I18n {
           `[actions-on-google-i18n] file "${file}" does not exist.`
         );
       }
-
-      const localesFile = require(file);
       
-      const locales = {...this.flattenObject(localesFile)};
-      
-      console.log(locales);
+      const locales = this.flattenObject(require(file));
 
       return (key, context = {}) => {
         let translation = locales[key];
