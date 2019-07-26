@@ -120,8 +120,18 @@ class I18n {
 
     app.__ = app.i18n = __i18nFactory();
   }
+
+  applyContext(translation, context) {
+    for (let ctxKey in context) {
+      translation = translation.replace(
+        '{' + ctxKey + '}',
+        context[ctxKey]
+      );
+    }
+    return translation;
+  }
   
-  flattenObject(ob) {
+    flattenObject(ob) {
     var toReturn = {};
 
     for (var i in ob) {
@@ -140,16 +150,6 @@ class I18n {
     }
     return toReturn;
 }
-
-  applyContext(translation, context) {
-    for (let ctxKey in context) {
-      translation = translation.replace(
-        '{' + ctxKey + '}',
-        context[ctxKey]
-      );
-    }
-    return translation;
-  }
 
   getLocale(conv) {
     let locale = conv && conv.user && conv.user.locale;
