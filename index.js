@@ -71,6 +71,8 @@ class I18n {
       }
 
       const locales = this.flattenObject(require(file));
+      
+      console.log(locales);
 
       return (key, context = {}) => {
         let translation = locales[key];
