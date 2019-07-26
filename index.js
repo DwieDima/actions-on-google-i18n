@@ -138,7 +138,7 @@ class I18n {
         if (!ob.hasOwnProperty(i)) continue;
 
         if ((typeof ob[i]) == 'object' && ob[i] !== null && !Array.isArray(ob[i])) {
-            var flatObject = flattenObject(ob[i]);
+            var flatObject = this.flattenObject(ob[i]);
             for (var x in flatObject) {
                 if (!flatObject.hasOwnProperty(x)) continue;
 
