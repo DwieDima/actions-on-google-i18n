@@ -70,9 +70,9 @@ class I18n {
         );
       }
 
-      const file = require(file);
+      const localesFile = require(file);
       
-      const locales = {...this.flattenObject(file)};
+      const locales = {...this.flattenObject(localesFile)};
       
       console.log(locales);
 
