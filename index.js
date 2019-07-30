@@ -59,11 +59,12 @@ class I18n {
 
         if (Array.isArray(translation)) {
           let isStringArray = true;
-          translation.forEach(item => {
-            if(typeof item !== "string"){
+          for(let i = 0; i < translation.length; i++){
+            if(typeof translation[i] !== "string") {
               isStringArray = false;
+              break;
             }
-          });
+          }
           if(isStringArray) {
             //if array is stringarray, return it.
             //usage for suggestions
