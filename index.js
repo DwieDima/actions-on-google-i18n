@@ -45,7 +45,7 @@ class I18n {
       this.configure();
     }
 
-    const __ = conv => {
+    function __(conv) {
 
       const locales = this.initLocaleFile(conv);
 
@@ -90,7 +90,7 @@ class I18n {
       };
     };
 
-    const __all = conv => {
+    function __all(conv) {
 
       const locales = this.initLocaleFile(conv);
 
@@ -106,7 +106,7 @@ class I18n {
       };
     };
 
-    const __raw = conv => {
+    function __raw(conv) {
 
       const locales = this.initLocaleFile(conv);
 
@@ -153,9 +153,9 @@ class I18n {
 
     // Register a middleware to set i18n function on each conv
     app.middleware(conv => {
-      conv.__ = conv.i18n.__ = __(conv);
-      conv.__all = conv.i18n.__all = __all(conv);
-      conv.__raw = conv.i18n.__raw = __raw(conv);
+      conv.__ = __(conv);
+      conv.__all = __all(conv);
+      conv.__raw = __raw(conv);
     });
 
   }
