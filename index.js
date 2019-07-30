@@ -46,31 +46,8 @@ class I18n {
     }
 
     const __i18nFactory = conv => {
-      let file = `${this.directory}/${this.getLocale(conv)}`;
 
-      if (this.defaultExtension) {
-        if (['js', 'json'].includes(this.defaultExtension)) {
-          file = `${file}.${this.defaultExtension}`;
-        } else {
-          throw new Error(
-            `[actions-on-google-i18n] extension "${
-              this.defaultExtension
-            }" is not allowed. Only "js" and "json" files are allowed.`
-          );
-        }
-      }
-
-      if (this._options.defaultFile && this._fileExists(this.defaultFile)) {
-        file = this.defaultFile;
-      }
-
-      if (!this._fileExists(file)) {
-        throw new Error(
-          `[actions-on-google-i18n] file "${file}" does not exist.`
-        );
-      }
-      
-      const locales = this.flattenObject(require(file));
+      const locales = this.initLocaleFile(conv);
 
       return (key, context = {}) => {
         let translation = locales[key];
@@ -81,8 +58,20 @@ class I18n {
         }
 
         if (Array.isArray(translation)) {
-          // if there are many utterances for a given key, pick a random one
-          translation = translation[Math.floor((Math.random()*translation.length))]
+          let isStringArray = true;
+          translation.forEach(item => {
+            if(typeof item !== "string"){
+              isStringArray = false;
+            }
+          });
+          if(isStringArray) {
+            //if array is stringarray, return it.
+            //usage for suggestions
+            return translation;
+          } else {
+            // if there are many utterances for a given key, pick a random one
+            translation = translation[Math.floor((Math.random()*translation.length))]
+          }
         }
 
         if (translation) {
@@ -119,6 +108,34 @@ class I18n {
     });
 
     app.__ = app.i18n = __i18nFactory();
+  }
+
+  initLocaleFile(conv) {
+    let file = `${this.directory}/${this.getLocale(conv)}`;
+
+    if (this.defaultExtension) {
+      if (['js', 'json'].includes(this.defaultExtension)) {
+        file = `${file}.${this.defaultExtension}`;
+      } else {
+        throw new Error(
+          `[actions-on-google-i18n] extension "${
+            this.defaultExtension
+          }" is not allowed. Only "js" and "json" files are allowed.`
+        );
+      }
+    }
+
+    if (this._options.defaultFile && this._fileExists(this.defaultFile)) {
+      file = this.defaultFile;
+    }
+
+    if (!this._fileExists(file)) {
+      throw new Error(
+        `[actions-on-google-i18n] file "${file}" does not exist.`
+      );
+    }
+    
+    return locales = this.flattenObject(require(file));
   }
 
   applyContext(translation, context) {
