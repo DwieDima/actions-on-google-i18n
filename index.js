@@ -153,14 +153,14 @@ class I18n {
 
     // Register a middleware to set i18n function on each conv
     app.middleware(conv => {
-      conv.__ = conv.__ = __(conv);
-      conv.__all = conv.__all = __all(conv);
-      conv.__raw = conv.__raw = __raw(conv);
+      conv.__ = conv.i18n.__ = __(conv);
+      conv.__all = conv.i18n.__all = __all(conv);
+      conv.__raw = conv.i18n.__raw = __raw(conv);
     });
 
-    app.__ = conv.__ = __(conv);
-    app.__all = conv.__all = __all(conv);
-    app.__raw = conv.__raw = __raw(conv);
+    app.__ = conv.i18n.__ = __(conv);
+    app.__all = conv.i18n.__all = __all(conv);
+    app.__raw = conv.i18n.__raw = __raw(conv);
   }
 
   initLocaleFile(conv) {
