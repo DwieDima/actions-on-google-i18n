@@ -135,7 +135,7 @@ class I18n {
       );
     }
     
-    return locales = this.flattenObject(require(file));
+    return this.flattenObject(require(file));
   }
 
   applyContext(translation, context) {
