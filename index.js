@@ -53,7 +53,7 @@ class I18n {
         let translation = locales[key];
 
         if (!translation) {
-          // wring key provided
+          // wrong key provided
           throw new Error(`Error: "${key}" was not found in locales [${Object.keys(locales)}}]. This is the locales file: ${locales}`);
         }
 
@@ -153,9 +153,9 @@ class I18n {
 
     // Register a middleware to set i18n function on each conv
     app.middleware(conv => {
-      conv.__ = conv.i18n = __(conv);
-      conv.__all = conv.i18n = __all(conv);
-      conv.__raw = conv.i18n = __raw(conv);
+      conv.__ = __(conv);
+      conv.__all = __all(conv);
+      conv.__raw = __raw(conv);
     });
 
     app.__ = app.i18n = __();
