@@ -146,8 +146,10 @@ class I18n {
           }
 
         }
-
-        return translation.text;
+        if(translation.text && translation.speech){
+          return translation.text;
+        } 
+        return translation;
       };
     };
 
