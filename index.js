@@ -158,9 +158,9 @@ class I18n {
       conv.__raw = conv.i18n.__raw = __raw(conv);
     });
 
-    app.__ = app.i18n.__ = __(conv);
-    app.__all = app.i18n.__all = __all(conv);
-    app.__raw = app.i18n.__raw = __raw(conv);
+    app.__ = app.i18n.__ = __();
+    app.__all = app.i18n.__all = __all();
+    app.__raw = app.i18n.__raw = __raw();
   }
 
   initLocaleFile(conv) {
