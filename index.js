@@ -154,6 +154,8 @@ class I18n {
     // Register a middleware to set i18n function on each conv
     app.middleware(conv => {
       conv.__ = __(conv);
+      conv.__all = __all(conv);
+      conv.__raw = __raw(conv);
     });
 
   }
