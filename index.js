@@ -156,7 +156,18 @@ class I18n {
     // Register a middleware to set i18n function on each conv
     app.middleware(conv => {
       conv.__ = __(conv);
-      conv.__all = __all(conv);
+      conv.__all = = conv => {
+       console.log(‘i18n Middleware init __all’, conv);
+       const locales = this.initLocaleFile(conv);
+       return (key) => {
+         let translation = locales[key];
+         if (!translation) {
+           // wring key provided
+           throw new Error(Error: "${key}" was not found in locales [${Object.keys(locales)}}]. This is the locales file: ${locales});
+         }
+         return translation;
+       };
+     };
       conv.__raw = __raw(conv);
     });
 
