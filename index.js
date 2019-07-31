@@ -157,13 +157,13 @@ class I18n {
     app.middleware(conv => {
       conv.__ = __(conv);
       conv.__all = conv => {
-       console.log(‘i18n Middleware init __all’, conv);
+       console.log('i18n Middleware init __all', conv);
        const locales = this.initLocaleFile(conv);
        return (key) => {
          let translation = locales[key];
          if (!translation) {
            // wring key provided
-           throw new Error(Error: "${key}" was not found in locales [${Object.keys(locales)}}]. This is the locales file: ${locales});
+           throw new Error(`Error: "${key}" was not found in locales [${Object.keys(locales)}}]. This is the locales file: ${locales}`);
          }
          return translation;
        };
